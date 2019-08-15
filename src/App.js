@@ -1,25 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import About from './Pages/About';
+import Home from './Pages/Home';
+import Clients from './Pages/Clients';
+// import Shop from './Pages/Shop';
+import Nav from './Components/Nav';
+import Heading from './Components/Heading';
+import Footer from './Components/Footer';
+import ScrollToTop from './Components/ScrollToTop';
+// import PageFrame from './Layout/PageFrame';
+// import ItemDetail from './Pages/ItemDetail';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+
+import { createGlobalStyle } from 'styled-components';
+import { globalStyles } from './Styles/global';
+
+const GlobalStyle = createGlobalStyle`
+  ${globalStyles}
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <GlobalStyle />
+      <Router>
+        <ScrollToTop>
+          <div className="App">
+            <Nav />
+            <Heading />
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/about" exact component={About} />
+              <Route path="/clients" exact component={Clients} />
+
+              {/* <Route path="/shop" exact component={Shop} />
+            <Route path="/shop/:id" exact component={ItemDetail} /> */}
+            </Switch>
+            <Footer />
+          </div>
+        </ScrollToTop>
+      </Router>
+    </React.Fragment>
   );
 }
 
