@@ -5,10 +5,12 @@ import About from './Pages/About';
 import Home from './Pages/Home';
 import Clients from './Pages/Clients';
 // import Shop from './Pages/Shop';
+
 import Nav from './Components/Nav';
 import Heading from './Components/Heading';
 import Footer from './Components/Footer';
 import ScrollToTop from './Components/ScrollToTop';
+
 // import PageFrame from './Layout/PageFrame';
 // import ItemDetail from './Pages/ItemDetail';
 

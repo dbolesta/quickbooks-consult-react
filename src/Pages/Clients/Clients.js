@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import clientData from '../../Data/clientData.json';
 import QuoteHighlight from '../../Components/QuoteHighlight';
 import TestimonialDetails from '../../Components/TestimonialDetails';
+import { generateKey } from '../../Utils/utils';
 
 const ContentContainer = styled.div`
   max-width: 1100px;
@@ -22,6 +23,25 @@ const Content = styled.section`
 
   p {
     text-align: left;
+  }
+`;
+
+const IndustryFilter = styled.ul`
+  list-style-type: none;
+
+  li {
+    display: inline-block;
+    border: 1px solid #86a39e;
+    border-radius: 2px;
+    margin: 5px;
+    padding: 5px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 200ms;
+
+    &:hover {
+      background-color: #dde5e4;
+    }
   }
 `;
 
@@ -88,6 +108,18 @@ class Clients extends Component {
         <ContentContainer>
           <Content>
             <h2>Small Business Clients, Past & Present</h2>
+
+            <IndustryFilter>
+              {this.state.clientData.clients.map(cData => (
+                <li
+                  onClick={() => this.selectTestimonial(cData)}
+                  key={generateKey(cData.id)}
+                >
+                  {cData.industry}
+                </li>
+              ))}
+            </IndustryFilter>
+
             <QuoteContainer>
               {this.state.clientData.clients.map(cData =>
                 cData.quotes.map(qData => (

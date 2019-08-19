@@ -40,7 +40,7 @@ const Home = () => {
     <ContentContainer>
       <Content>
         <div>
-          <h2>Experienced Professional</h2>
+          <h2>Remote Bookkeeping Services</h2>
           <p>
             Offering 30 years of successful experience to assist any
             small business or diversified family estate to properly
