@@ -90,6 +90,7 @@ const PrevNextSelect = styled.div`
   /* width: 200px; */
   flex: 0 0 10%;
   height: 100px; /* forces arrow buttons to be aligned regardless of text content below */
+  min-width: 137px;
   text-align: center;
   align-items: center;
   overflow: visible;
