@@ -183,11 +183,7 @@ class Footer extends Component {
   render() {
     return (
       <FooterContainer>
-        <FooterCard
-          className="footer-card"
-          onScroll={console.log('hi')}
-          ref={this.footerCardRef}
-        >
+        <FooterCard className="footer-card" ref={this.footerCardRef}>
           <PuzzleImage
             src={puzzlePiece1}
             className={this.state.inView ? 'slide' : ''}

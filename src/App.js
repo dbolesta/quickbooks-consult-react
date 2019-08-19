@@ -4,6 +4,8 @@ import './App.css';
 import About from './Pages/About';
 import Home from './Pages/Home';
 import Clients from './Pages/Clients';
+import Contact from './Pages/Contact';
+import Rates from './Pages/Rates';
 // import Shop from './Pages/Shop';
 
 import Nav from './Components/Nav';
@@ -40,6 +42,8 @@ function App() {
               <Route path="/" exact component={Home} />
               <Route path="/about" exact component={About} />
               <Route path="/clients" exact component={Clients} />
+              <Route path="/contact" exact component={Contact} />
+              <Route path="/rates" exact component={Rates} />
 
               {/* <Route path="/shop" exact component={Shop} />
             <Route path="/shop/:id" exact component={ItemDetail} /> */}

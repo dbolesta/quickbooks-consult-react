@@ -1,6 +1,6 @@
-console.log('damon did it!');
+// console.log('damon did it!');
 
-const footerCard = document.querySelector('.footer-card');
+// const footerCard = document.querySelector('.footer-card');
 
-console.log(footerCard);
-console.dir(footerCard);
+// console.log(footerCard);
+// console.dir(footerCard);
