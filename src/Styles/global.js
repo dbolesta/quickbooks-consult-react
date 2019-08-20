@@ -23,6 +23,10 @@ export const globalStyles = css`
     line-height: 1.6;
     background-color: #ab2b47;
     color: #fceff4;
+
+    @media (max-width: 900px) {
+      font-size: 0.75rem;
+    }
   }
 
   p {
@@ -44,6 +48,10 @@ export const globalStyles = css`
     margin-top: 0;
     margin-bottom: 1rem;
     font-family: 'Raleway';
+
+    /* @media (max-width: 900px) {
+      font-size: 1.75rem;
+    } */
   }
 
   h3 {

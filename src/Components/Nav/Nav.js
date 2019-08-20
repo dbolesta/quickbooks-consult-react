@@ -33,7 +33,8 @@ const NavList = styled.ul`
 `;
 const NavItem = styled.li`
   font-weight: 600;
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 1.1rem;
   font-family: 'Raleway';
 `;
 
@@ -41,6 +42,10 @@ const NavPadding = styled.div`
   display: block;
   width: 100%;
   height: 65px;
+
+  @media (max-width: 900px) {
+    height: 45px;
+  }
 `;
 
 const Nav = () => {

@@ -27,7 +27,7 @@ class QuoteHighlight extends React.Component {
     const puzzleColors = ['#86a39e', '#ef934f', '#f3cf5f', '#fdecc6'];
     const fonts = ['Beth Ellen', 'Grenze', 'Indie Flower', 'Caveat'];
 
-    this.randSize = getRandomIntInclusive(35, 40);
+    this.randSize = getRandomIntInclusive(2.5, 3.4);
     this.randColor = puzzleColors[getRandomIntInclusive(0, 3)];
     this.randFlexBasis = getRandomIntInclusive(18, 31);
     this.randRotate = getRandomIntInclusive(-5, 5);
@@ -85,7 +85,7 @@ class QuoteHighlight extends React.Component {
     // }, []);
 
     const inlineStyle = {
-      fontSize: `${this.randSize}px`,
+      fontSize: `${this.randSize}rem`,
       color: `${this.randColor}`,
       flex: `1 0 ${this.randFlexBasis}%`,
       transform: `rotate(${this.randRotate}deg)`,

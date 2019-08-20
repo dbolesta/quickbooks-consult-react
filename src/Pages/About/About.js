@@ -7,6 +7,10 @@ const ContentContainer = styled.div`
   overflow: hidden;
   padding: 0 2rem;
   margin-bottom: 3rem;
+
+  @media (max-width: 900px) {
+    padding: 0 0.25rem;
+  }
 `;
 
 const Content = styled.section`

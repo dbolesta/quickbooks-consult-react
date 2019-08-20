@@ -25,6 +25,10 @@ const Text = styled.h1`
   font-size: 3rem;
   /* font-weight: 600; */
   padding: 1.2rem 0;
+
+  /* @media (max-width: 900px) {
+    font-size: 2rem;
+  } */
 `;
 
 const Heading = () => {

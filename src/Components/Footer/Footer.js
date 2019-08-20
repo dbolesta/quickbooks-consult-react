@@ -14,6 +14,10 @@ const FooterContainer = styled.div`
   overflow: hidden;
   padding: 2rem;
   font-size: 1.4rem;
+
+  @media (max-width: 900px) {
+    padding: 1rem 0.25rem;
+  }
 `;
 
 const FooterCard = styled.div`
@@ -29,6 +33,12 @@ const FooterCard = styled.div`
   padding: 1rem;
   overflow: hidden;
   font-family: 'Barlow Semi Condensed';
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr 10fr 1fr;
+    max-width: 450px;
+    width: 100%;
+  }
 `;
 
 const Top = styled.div`
@@ -63,33 +73,14 @@ const Bottom = styled.div`
   }
 `;
 
-const slide1 = keyframes`
+const slideAnim = (top, right, bottom, left) => keyframes`
   100% {
     transform: rotate(0deg);
-    bottom: -38px;
-    left: -21px;
-  }
-`;
-const slide2 = keyframes`
-  100% {
-    transform: rotate(0deg);
-    top: -22px;
-    left: 78px;
-  }
-`;
-const slide3 = keyframes`
-   100% {
-      transform: rotate(0deg);
-      top: 71px;
-      left: -23px;
-   }
-`;
-const slide4 = keyframes`
-   100% {
-     transform: rotate(0deg);
-     bottom: 7px;
-     right: -24px;
-   }
+    top: ${top ? top : ''};
+    right: ${right ? right : ''};
+    bottom: ${bottom ? bottom : ''};
+    left: ${left ? left : ''};
+  }  
 `;
 
 const PuzzleImage = styled.img`
@@ -98,46 +89,58 @@ const PuzzleImage = styled.img`
   z-index: 0;
   filter: drop-shadow(0px 3px 1px rgba(0, 0, 0, 0.2));
 
+  @media (max-width: 900px) {
+    width: 94px;
+  }
+
   &:nth-of-type(1) {
     transform: rotate(120deg);
     bottom: -138px;
     left: -121px;
+
+    &.slide {
+      animation: ${slideAnim(null, null, '-38px', '-21px')} 1s
+        cubic-bezier(0.25, 0.25, 0, 1.015) forwards;
+      animation-delay: 0.3s;
+    }
   }
+
   &:nth-of-type(2) {
     transform: rotate(230deg);
     top: -122px;
     left: 178px;
+
+    &.slide {
+      animation: ${slideAnim('-22px', null, null, '78px')} 0.6s
+        cubic-bezier(0.25, 0.25, 0, 1.015) forwards;
+      animation-delay: 0.5s;
+
+      @media (max-width: 900px) {
+        animation-name: ${slideAnim('-31px', null, null, '13px')};
+      }
+    }
   }
   &:nth-of-type(3) {
     transform: rotate(-169deg);
     top: 171px;
     left: -123px;
+
+    &.slide {
+      animation: ${slideAnim('71px', null, null, '-23px')} 0.85s
+        cubic-bezier(0.25, 0.25, 0, 1.015) forwards;
+      animation-delay: 0.1s;
+    }
   }
   &:nth-of-type(4) {
     transform: rotate(-300deg);
     bottom: 107px;
     right: -204px;
-  }
 
-  &.slide:nth-of-type(1) {
-    animation: ${slide1} 1s cubic-bezier(0.25, 0.25, 0, 1.015)
-      forwards;
-    animation-delay: 0.3s;
-  }
-  &.slide:nth-of-type(2) {
-    animation: ${slide2} 0.6s cubic-bezier(0.25, 0.25, 0, 1.015)
-      forwards;
-    animation-delay: 0.5s;
-  }
-  &.slide:nth-of-type(3) {
-    animation: ${slide3} 0.85s cubic-bezier(0.25, 0.25, 0, 1.015)
-      forwards;
-    animation-delay: 0.1s;
-  }
-  &.slide:nth-of-type(4) {
-    animation: ${slide4} 1.25s cubic-bezier(0.25, 0.25, 0, 1.015)
-      forwards;
-    animation-delay: 0.2s;
+    &.slide {
+      animation: ${slideAnim(null, '-24px', '7px', null)} 1.25s
+        cubic-bezier(0.25, 0.25, 0, 1.015) forwards;
+      animation-delay: 0.2s;
+    }
   }
 `;
 
