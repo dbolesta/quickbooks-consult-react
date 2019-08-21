@@ -32,13 +32,16 @@ const Content = styled.section`
 
 const IndustryFilter = styled.ul`
   list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 
   li {
-    display: inline-block;
+    flex-grow: 1;
     border: 1px solid #86a39e;
     border-radius: 2px;
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
     line-height: 1;
     cursor: pointer;
     transition: all 200ms;
@@ -68,6 +71,23 @@ class Clients extends Component {
 
     this.selectTestimonial = this.selectTestimonial.bind(this);
     this.closeQuoteModal = this.closeQuoteModal.bind(this);
+  }
+
+  componentDidUpdate() {
+    // prevent document from being scrollable when modal is open
+    const docStyle = document.body.style;
+
+    this.state.testimonialVisible
+      ? (docStyle.overflow = 'hidden')
+      : (docStyle.overflow = 'auto');
+
+    // if (this.state.testimonialVisible) {
+    //   docStyle.overflow = 'hidden';
+    //   docStyle.position = 'fixed';
+    // } else {
+    //   docStyle.overflow = 'auto';
+    //   docStyle.position = 'static';
+    // }
   }
 
   // takes id as int and returns client data whos id matches

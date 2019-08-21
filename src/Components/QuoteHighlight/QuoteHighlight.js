@@ -24,12 +24,13 @@ class QuoteHighlight extends React.Component {
   }
 
   componentDidMount() {
-    const puzzleColors = ['#86a39e', '#ef934f', '#f3cf5f', '#fdecc6'];
+    // #fdecc6
+    const puzzleColors = ['#86a39e', '#ef934f', '#f3cf5f'];
     const fonts = ['Beth Ellen', 'Grenze', 'Indie Flower', 'Caveat'];
 
-    this.randSize = getRandomIntInclusive(2.5, 3.4);
-    this.randColor = puzzleColors[getRandomIntInclusive(0, 3)];
-    this.randFlexBasis = getRandomIntInclusive(18, 31);
+    this.randSize = getRandomIntInclusive(1.3, 2);
+    this.randColor = puzzleColors[getRandomIntInclusive(0, 2)];
+    this.randFlexBasis = getRandomIntInclusive(15, 25);
     this.randRotate = getRandomIntInclusive(-5, 5);
     this.randFont = fonts[getRandomIntInclusive(0, 3)];
 
@@ -39,55 +40,10 @@ class QuoteHighlight extends React.Component {
   }
 
   render() {
-    // const sizeRef = useRef();
-    // const sizeRef = useRef();
-    // const sizeRef = useRef();
-    // const sizeRef = useRef();
-    // const sizeRef = useRef();
-
-    // const randSize = useRef();
-    // const randColor = useRef();
-    // const randFlexBasis = useRef();
-    // const randRotate = useRef();
-    // const randFont = useRef();
-
-    // let randSize;
-    // let randColor;
-    // let randFlexBasis;
-    // let randRotate;
-    // let randFont;
-
-    // let randSize = getRandomIntInclusive(35, 40);
-    // let randColor = puzzleColors[getRandomIntInclusive(0, 3)];
-    // let randFlexBasis = getRandomIntInclusive(18, 31);
-    // let randRotate = getRandomIntInclusive(-5, 5);
-    // let randFont = fonts[getRandomIntInclusive(0, 3)];
-
-    // randSize.current = getRandomIntInclusive(35, 40);
-    // randColor.current = puzzleColors[getRandomIntInclusive(0, 3)];
-    // randFlexBasis.current = getRandomIntInclusive(18, 31);
-    // randRotate.current = getRandomIntInclusive(-5, 5);
-    // randFont.current = fonts[getRandomIntInclusive(0, 3)];
-
-    // useEffect(() => {
-    //   console.log('useeffect has been called');
-    //   randSize = getRandomIntInclusive(35, 40);
-    //   randColor = puzzleColors[getRandomIntInclusive(0, 3)];
-    //   randFlexBasis = getRandomIntInclusive(18, 31);
-    //   randRotate = getRandomIntInclusive(-5, 5);
-    //   randFont = fonts[getRandomIntInclusive(0, 3)];
-
-    //   // randSize.current = getRandomIntInclusive(35, 40);
-    //   // randColor.current = puzzleColors[getRandomIntInclusive(0, 3)];
-    //   // randFlexBasis.current = getRandomIntInclusive(18, 31);
-    //   // randRotate.current = getRandomIntInclusive(-5, 5);
-    //   // randFont.current = fonts[getRandomIntInclusive(0, 3)];
-    // }, []);
-
     const inlineStyle = {
       fontSize: `${this.randSize}rem`,
       color: `${this.randColor}`,
-      flex: `1 0 ${this.randFlexBasis}%`,
+      flex: `1 1 ${this.randFlexBasis}%`,
       transform: `rotate(${this.randRotate}deg)`,
       fontFamily: `${this.randFont}`
     };
