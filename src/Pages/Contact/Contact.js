@@ -28,6 +28,10 @@ const Content = styled.section`
   p {
     text-align: left;
   }
+
+  a {
+    color: #7fdbff;
+  }
 `;
 
 const Contact = props => {
@@ -35,6 +39,14 @@ const Contact = props => {
     <ContentContainer>
       <Content>
         <h2>Contact Me</h2>
+        <p>
+          Contact me at{' '}
+          <a href="mailto:lindaquickbooks@gmail.com">
+            lindaquickbooks@gmail.com
+          </a>{' '}
+          or (603) 279-0407 to discuss your QuickBooks® bookkeeping
+          needs.
+        </p>
       </Content>
     </ContentContainer>
   );

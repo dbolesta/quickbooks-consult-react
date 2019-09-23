@@ -264,54 +264,50 @@ const TestimonialDetails = props => {
   }
 
   return (
-    <Div100vh>
-      <TestimonialContainer
-        visible={props.visible}
-        onClick={props.closeHandler}
-        className={props.visible ? 'show' : ''}
+    <TestimonialContainer
+      visible={props.visible}
+      onClick={props.closeHandler}
+      className={props.visible ? 'show' : ''}
+    >
+      <TestimonialCardContainer onClick={e => clickHandler(e, props)}>
+        <CloseModal onClick={props.closeHandler}>X</CloseModal>
+        <TestimonialCard ref={cardRef}>
+          <h3>{industry}</h3>
+          <h4>
+            <i className="fas fa-map-marker-alt" /> {location}
+          </h4>
+          <p>{description}</p>
+          {quotes ? (
+            quotes.map((quote, i) => (
+              <ClientQuote key={quote.author.substring(0, 3)}>
+                <i className="fas fa-quote-left" />
+                <i className="fas fa-quote-right" />
+                <p dangerouslySetInnerHTML={createMarkup(i)} />
+                <p className="author">-{quote.author}</p>
+              </ClientQuote>
+            ))
+          ) : (
+            <p>If you see, this there has been an error!</p>
+          )}
+        </TestimonialCard>
+      </TestimonialCardContainer>
+
+      <PrevNextSelect
+        className="prev"
+        onClick={() => props.selectHandler(props.prev)}
       >
-        <TestimonialCardContainer
-          onClick={e => clickHandler(e, props)}
-        >
-          <CloseModal onClick={props.closeHandler}>X</CloseModal>
-          <TestimonialCard ref={cardRef}>
-            <h3>{industry}</h3>
-            <h4>
-              <i className="fas fa-map-marker-alt" /> {location}
-            </h4>
-            <p>{description}</p>
-            {quotes ? (
-              quotes.map((quote, i) => (
-                <ClientQuote key={quote.author.substring(0, 3)}>
-                  <i className="fas fa-quote-left" />
-                  <i className="fas fa-quote-right" />
-                  <p dangerouslySetInnerHTML={createMarkup(i)} />
-                  <p className="author">-{quote.author}</p>
-                </ClientQuote>
-              ))
-            ) : (
-              <p>If you see, this there has been an error!</p>
-            )}
-          </TestimonialCard>
-        </TestimonialCardContainer>
+        <div>&lt;</div>
+        <p>{props.prev.industry}</p>
+      </PrevNextSelect>
 
-        <PrevNextSelect
-          className="prev"
-          onClick={() => props.selectHandler(props.prev)}
-        >
-          <div>&lt;</div>
-          <p>{props.prev.industry}</p>
-        </PrevNextSelect>
-
-        <PrevNextSelect
-          className="next"
-          onClick={() => props.selectHandler(props.next)}
-        >
-          <div>&gt;</div>
-          <p>{props.next.industry}</p>
-        </PrevNextSelect>
-      </TestimonialContainer>
-    </Div100vh>
+      <PrevNextSelect
+        className="next"
+        onClick={() => props.selectHandler(props.next)}
+      >
+        <div>&gt;</div>
+        <p>{props.next.industry}</p>
+      </PrevNextSelect>
+    </TestimonialContainer>
   );
 };
 
