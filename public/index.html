@@ -33,41 +33,6 @@
     <div id="root"></div>
 
     <!--
-        Netlify form handling React fix:
-        netlify_form_does_not_work
-      -->
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      style="display:none;"
-    >
-      <p>
-        <label> Your Name: <input type="text" name="name" /> </label>
-      </p>
-      <p>
-        <label>
-          Your Email: <input type="email" name="email" />
-        </label>
-      </p>
-      <p>
-        <label>
-          Your Role:{' '}
-          <select name="role[]" multiple>
-            <option value="leader">Leader</option>
-            <option value="follower">Follower</option>
-          </select>
-        </label>
-      </p>
-      <p>
-        <label> Message: <textarea name="message"></textarea> </label>
-      </p>
-      <p>
-        <button type="submit">Send</button>
-      </p>
-    </form>
-
-    <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
