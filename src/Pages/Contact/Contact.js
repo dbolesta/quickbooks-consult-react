@@ -52,7 +52,7 @@ const Contact = props => {
         </p>
 
         <p>
-          <b>Phone:</b> (603) 279-0407
+          <b>Phone:</b> <a href="tel:6032790407">(603) 279-0407</a>
         </p>
       </Content>
     </ContentContainer>
