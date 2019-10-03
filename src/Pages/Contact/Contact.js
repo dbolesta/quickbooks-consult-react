@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ContactForm from '../../Components/ContactForm';
+
 const ContentContainer = styled.div`
   max-width: 1100px;
   margin: auto;
@@ -40,35 +42,22 @@ const Contact = props => {
       <Content>
         <h2>Contact Me</h2>
         <p>
-          Contact me at{' '}
-          <a href="mailto:lindaquickbooks@gmail.com">
-            lindaquickbooks@gmail.com
-          </a>{' '}
-          or (603) 279-0407 to discuss your QuickBooks® bookkeeping
-          needs.
+          Reach out by email or phone to discuss your QuickBooks®
+          bookkeeping needs.
         </p>
 
-        <form name="contact" method="post">
-          <input type="hidden" name="form-name" value="contact" />
-          <p>
-            <label>
-              Your Name: <input type="text" name="name" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Your Email: <input type="email" name="email" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Message: <textarea name="message"></textarea>
-            </label>
-          </p>
-          <p>
-            <button type="submit">Send</button>
-          </p>
-        </form>
+        <p>
+          <b>Email:</b>{' '}
+          <a href="mailto:lindaquickbooks@gmail.com">
+            lindaquickbooks@gmail.com
+          </a>
+        </p>
+
+        <p>
+          <b>Phone:</b> (603) 279-0407
+        </p>
+
+        {/* <ContactForm /> */}
       </Content>
     </ContentContainer>
   );

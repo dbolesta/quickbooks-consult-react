@@ -21,6 +21,11 @@ const Content = styled.section`
   color: #333;
   padding: 2rem;
 
+  div {
+    padding: 2rem;
+    padding-top: 0;
+  }
+
   p {
     text-align: left;
   }
@@ -42,6 +47,33 @@ const About = () => {
   return (
     <ContentContainer>
       <Content>
+        <div>
+          <h2>About Me</h2>
+          <p>
+            I have recently relocated to the NH Lakes Region area
+            after spending 30 years raising a family and managing a
+            growing business in the fast paced NYC commercial
+            marketing industry. Running my company entailed being a
+            full charge bookkeeper. I learned throughout the years
+            that I enjoy this process and the financial steps one
+            takes to document a businesses activity correctly.
+          </p>
+
+          <p>
+            Intuit’s QuickBooks® small business accounting program is
+            flexible and versatile and allows for a complete financial
+            picture for any organization.{' '}
+          </p>
+
+          <p>
+            The mechanisms of running any company are universal. Being
+            a small business owner, one is the CEO, COO, CFO, sales
+            manager, customer relations, delivery service, human
+            resources, and custodian. Titles don’t matter;
+            responsibility and getting the job done well does.
+          </p>
+        </div>
+
         <h2>My Qualifications</h2>
         <CheckList>
           <li>
