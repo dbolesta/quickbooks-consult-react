@@ -26,7 +26,7 @@ const Content = styled.section`
   padding: 2rem;
 
   p {
-    text-align: left;
+    text-align: center;
   }
 `;
 
@@ -132,6 +132,11 @@ class Clients extends Component {
         <ContentContainer>
           <Content>
             <h2>Small Business Clients, Past & Present</h2>
+
+            <p>
+              Click on an industry or quote to see what people have
+              said about my work.
+            </p>
 
             <IndustryFilter>
               {this.state.clientData.clients.map(cData => (
