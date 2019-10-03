@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { getRandomIntInclusive } from '../../Utils/utils';
 import styled from 'styled-components';
 
@@ -48,13 +48,6 @@ class QuoteHighlight extends React.Component {
       fontFamily: `${this.randFont}`
     };
 
-    const clickHandler = (e, props) => {
-      console.log(props);
-      console.log(e);
-    };
-
-    //onClick={e => clickHandler(e, props)}
-    //console.log({ props });
     return (
       <Highlight
         onClick={() =>

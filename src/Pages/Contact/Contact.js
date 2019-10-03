@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ContactForm from '../../Components/ContactForm';
-
 const ContentContainer = styled.div`
   max-width: 1100px;
   margin: auto;
@@ -56,8 +54,6 @@ const Contact = props => {
         <p>
           <b>Phone:</b> (603) 279-0407
         </p>
-
-        {/* <ContactForm /> */}
       </Content>
     </ContentContainer>
   );

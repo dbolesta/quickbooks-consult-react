@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styled, { css } from 'styled-components';
-import Div100vh from 'react-div-100vh';
+import styled from 'styled-components';
 
 const TestimonialContainer = styled.div`
   background-color: rgba(46, 48, 49, 0.5);
