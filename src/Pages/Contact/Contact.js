@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ContactForm from '../../Components/ContactForm';
+
 const ContentContainer = styled.div`
   max-width: 1100px;
   margin: auto;
@@ -43,6 +45,8 @@ const Contact = props => {
           Reach out by email or phone to discuss your QuickBooks®
           bookkeeping needs.
         </p>
+
+        <ContactForm />
 
         <p>
           <b>Email:</b>{' '}

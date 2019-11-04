@@ -77,36 +77,37 @@ const About = () => {
         <h2>My Qualifications</h2>
         <CheckList>
           <li>
-            <i class="fas fa-check-circle" /> Understands the
+            <i className="fas fa-check-circle" /> Understands the
             mechanics and processes of running a profitable small
             business or convoluted family estate.
           </li>
           <li>
-            <i class="fas fa-check-circle" /> A/P, A/R, inventory,
+            <i className="fas fa-check-circle" /> A/P, A/R, inventory,
             benefit/union/medical liabilities, payroll tracking
           </li>
           <li>
-            <i class="fas fa-check-circle" /> Small medical practice
-            billing program available-- track dual billing and
-            insurance deductions
+            <i className="fas fa-check-circle" /> Small medical
+            practice billing program available-- track dual billing
+            and insurance deductions
           </li>
           <li>
-            <i class="fas fa-check-circle" /> Tax and
+            <i className="fas fa-check-circle" /> Tax and
             Accountant liaison: journal, ledger, trial balance
             reporting and statements
           </li>
           <li>
-            <i class="fas fa-check-circle" /> Manual payroll, 940
+            <i className="fas fa-check-circle" /> Manual payroll, 940
             &amp; 941 filings, DOT truck taxes and federal/state/local
             mandates
           </li>
           <li>
-            <i class="fas fa-check-circle" /> Honest, ethical,
+            <i className="fas fa-check-circle" /> Honest, ethical,
             friendly, organized, and diligent attention to detail
           </li>
           <li>
-            <i class="fas fa-check-circle" /> Reasonable and sliding
-            scale pricing based on industry and services requested
+            <i className="fas fa-check-circle" /> Reasonable and
+            sliding scale pricing based on industry and services
+            requested
           </li>
         </CheckList>
       </Content>
