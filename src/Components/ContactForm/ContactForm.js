@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Error from './Error';
 
 const FormContainer = styled.div`
   /* padding: 2rem; */
@@ -12,15 +13,14 @@ const FormContainer = styled.div`
     width: 100%;
   }
 
-  /* div {
-    border: 1px solid green;
-  } */
+  .thanks-for-sending {
+    text-align: center;
+  }
 `;
 
 const FormGroup = styled.div`
   margin-bottom: 1rem;
-  padding: 1rem !important;
-  padding-top: 0 !important;
+  padding: 0 1rem !important;
 
   label {
     display: block;
@@ -59,77 +59,26 @@ const FormGroup = styled.div`
       background-color: #208d53;
     }
   }
+
+  .has-error {
+    border: 2px solid red;
+  }
+
+  .form-message {
+    padding-top: 0.5rem;
+    display: block;
+    font-size: 0.9rem;
+    color: red;
+  }
 `;
 
-// class ContactForm extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { name: '', email: '', message: '' };
-//   }
-
-//   handleForm = e => {
-//     axios
-//       .post('https://formcarry.com/s/lBQFkt4kkeL', this.state, {
-//         headers: { Accept: 'application/json' }
-//       })
-//       .then(function(response) {
-//         console.log(response);
-//       })
-//       .catch(function(error) {
-//         console.log(error);
-//         console.log('this was an error!');
-//       });
-
-//     e.preventDefault();
-//   };
-
-//   handleFields = e =>
-//     this.setState({ [e.target.name]: e.target.value });
-
-//   render() {
-//     return (
-//       <FormContainer>
-//         <form onSubmit={this.handleForm}>
-//           <FormGroup>
-//             <label htmlFor="name">Name</label>
-//             <input
-//               type="text"
-//               id="name"
-//               name="name"
-//               onChange={this.handleFields}
-//             />
-//           </FormGroup>
-
-//           <FormGroup>
-//             <label htmlFor="email">Email</label>
-//             <input
-//               type="email"
-//               id="email"
-//               name="email"
-//               onChange={this.handleFields}
-//             />
-//           </FormGroup>
-
-//           <FormGroup>
-//             <label htmlFor="message">Your Message</label>
-//             <textarea
-//               name="message"
-//               id="message"
-//               rows="5"
-//               onChange={this.handleFields}
-//             />
-//           </FormGroup>
-
-//           <FormGroup>
-//             <button type="submit">Send</button>
-//           </FormGroup>
-//         </form>
-//       </FormContainer>
-//     );
-//   }
-// }
-
-const ContactForm = ({ values, errors, touched, isSubmitting }) => (
+const ContactForm = ({
+  values,
+  errors,
+  touched,
+  isSubmitting,
+  status
+}) => (
   <FormContainer>
     <Form>
       <FormGroup>
@@ -138,8 +87,9 @@ const ContactForm = ({ values, errors, touched, isSubmitting }) => (
           type="name"
           name="name"
           placeholder="Enter your name"
+          className={touched.name && errors.name ? 'has-error' : null}
         />
-        {touched.name && errors.name && <p>{errors.name}</p>}
+        <Error touched={touched.name} message={errors.name} />
       </FormGroup>
       <FormGroup>
         <label htmlFor="email">Your Email</label>
@@ -147,8 +97,11 @@ const ContactForm = ({ values, errors, touched, isSubmitting }) => (
           type="email"
           name="email"
           placeholder="Enter your Email"
+          className={
+            touched.email && errors.email ? 'has-error' : null
+          }
         />
-        {touched.email && errors.email && <p>{errors.email}</p>}
+        <Error touched={touched.email} message={errors.email} />
       </FormGroup>
       <FormGroup>
         <label htmlFor="name">Your Message</label>
@@ -157,13 +110,24 @@ const ContactForm = ({ values, errors, touched, isSubmitting }) => (
           name="message"
           rows="10"
           placeholder="Enter your message"
+          className={
+            touched.message && errors.message ? 'has-error' : null
+          }
         />
-        {touched.message && errors.message && <p>{errors.message}</p>}
+        <Error touched={touched.message} message={errors.message} />
       </FormGroup>
 
-      <button disabled={isSubmitting} type="submit">
-        Submit
-      </button>
+      {status ? (
+        <p className="thanks-for-sending">
+          Thanks! I'll get back to you as soon as I can!
+        </p>
+      ) : null}
+
+      <FormGroup>
+        <button disabled={isSubmitting} type="submit">
+          {isSubmitting ? 'Submitting...' : 'Submit'}
+        </button>
+      </FormGroup>
     </Form>
   </FormContainer>
 );
@@ -183,18 +147,21 @@ const FormikForm = withFormik({
       .required('Email is required'),
     message: Yup.string().required('Message is required')
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+  handleSubmit(
+    values,
+    { resetForm, setErrors, setStatus, setSubmitting }
+  ) {
     // console.log('sending message');
     // console.log(values);
     // setSubmitting(false);
+    setSubmitting(false);
     axios
       .post('https://formcarry.com/s/lBQFkt4kkeL', values, {
         headers: { Accept: 'application/json' }
       })
       .then(function(response) {
-        console.log(response);
-        console.log('sending it along?');
-        console.log(values);
+        resetForm();
+        setStatus({ success: true }); // so we can have a success message
       })
       .catch(function(error) {
         console.log(error);
