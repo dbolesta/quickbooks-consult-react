@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import axios from 'axios';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 const FormContainer = styled.div`
   /* padding: 2rem; */
@@ -13,18 +15,6 @@ const FormContainer = styled.div`
   /* div {
     border: 1px solid green;
   } */
-`;
-const FormRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0rem !important;
-`;
-
-const FormCol = styled.div`
-  flex-basis: 0;
-  flex-grow: 1;
-  max-width: 100%;
-  padding: 0rem !important;
 `;
 
 const FormGroup = styled.div`
@@ -71,86 +61,146 @@ const FormGroup = styled.div`
   }
 `;
 
-class ContactForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { name: '', email: '', message: '' };
-  }
+// class ContactForm extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { name: '', email: '', message: '' };
+//   }
 
-  handleForm = e => {
+//   handleForm = e => {
+//     axios
+//       .post('https://formcarry.com/s/lBQFkt4kkeL', this.state, {
+//         headers: { Accept: 'application/json' }
+//       })
+//       .then(function(response) {
+//         console.log(response);
+//       })
+//       .catch(function(error) {
+//         console.log(error);
+//         console.log('this was an error!');
+//       });
+
+//     e.preventDefault();
+//   };
+
+//   handleFields = e =>
+//     this.setState({ [e.target.name]: e.target.value });
+
+//   render() {
+//     return (
+//       <FormContainer>
+//         <form onSubmit={this.handleForm}>
+//           <FormGroup>
+//             <label htmlFor="name">Name</label>
+//             <input
+//               type="text"
+//               id="name"
+//               name="name"
+//               onChange={this.handleFields}
+//             />
+//           </FormGroup>
+
+//           <FormGroup>
+//             <label htmlFor="email">Email</label>
+//             <input
+//               type="email"
+//               id="email"
+//               name="email"
+//               onChange={this.handleFields}
+//             />
+//           </FormGroup>
+
+//           <FormGroup>
+//             <label htmlFor="message">Your Message</label>
+//             <textarea
+//               name="message"
+//               id="message"
+//               rows="5"
+//               onChange={this.handleFields}
+//             />
+//           </FormGroup>
+
+//           <FormGroup>
+//             <button type="submit">Send</button>
+//           </FormGroup>
+//         </form>
+//       </FormContainer>
+//     );
+//   }
+// }
+
+const ContactForm = ({ values, errors, touched, isSubmitting }) => (
+  <FormContainer>
+    <Form>
+      <FormGroup>
+        <label htmlFor="name">Your Name</label>
+        <Field
+          type="name"
+          name="name"
+          placeholder="Enter your name"
+        />
+        {touched.name && errors.name && <p>{errors.name}</p>}
+      </FormGroup>
+      <FormGroup>
+        <label htmlFor="email">Your Email</label>
+        <Field
+          type="email"
+          name="email"
+          placeholder="Enter your Email"
+        />
+        {touched.email && errors.email && <p>{errors.email}</p>}
+      </FormGroup>
+      <FormGroup>
+        <label htmlFor="name">Your Message</label>
+        <Field
+          component="textarea"
+          name="message"
+          rows="10"
+          placeholder="Enter your message"
+        />
+        {touched.message && errors.message && <p>{errors.message}</p>}
+      </FormGroup>
+
+      <button disabled={isSubmitting} type="submit">
+        Submit
+      </button>
+    </Form>
+  </FormContainer>
+);
+
+const FormikForm = withFormik({
+  mapPropsToValues({ name, email, message }) {
+    return {
+      name: name || '',
+      email: email || '',
+      message: message || ''
+    };
+  },
+  validationSchema: Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string()
+      .email('Email not valid')
+      .required('Email is required'),
+    message: Yup.string().required('Message is required')
+  }),
+  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+    // console.log('sending message');
+    // console.log(values);
+    // setSubmitting(false);
     axios
-      .post('https://formcarry.com/s/lBQFkt4kkeL', this.state, {
+      .post('https://formcarry.com/s/lBQFkt4kkeL', values, {
         headers: { Accept: 'application/json' }
       })
       .then(function(response) {
         console.log(response);
+        console.log('sending it along?');
+        console.log(values);
       })
       .catch(function(error) {
         console.log(error);
         console.log('this was an error!');
       });
-
-    e.preventDefault();
-  };
-
-  handleFields = e =>
-    this.setState({ [e.target.name]: e.target.value });
-
-  render() {
-    return (
-      <FormContainer>
-        <form onSubmit={this.handleForm}>
-          <FormRow>
-            <FormCol>
-              <FormGroup>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  onChange={this.handleFields}
-                />
-              </FormGroup>
-            </FormCol>
-
-            <FormCol>
-              <FormGroup>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  onChange={this.handleFields}
-                />
-              </FormGroup>
-            </FormCol>
-          </FormRow>
-
-          <FormRow>
-            <FormCol>
-              <FormGroup>
-                <label htmlFor="message">Your Message</label>
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="5"
-                  onChange={this.handleFields}
-                />
-              </FormGroup>
-            </FormCol>
-          </FormRow>
-
-          <FormRow>
-            <FormCol>
-              <FormGroup>
-                <button type="submit">Send</button>
-              </FormGroup>
-            </FormCol>
-          </FormRow>
-        </form>
-      </FormContainer>
-    );
   }
-}
+})(ContactForm);
 
-export default ContactForm;
+export default FormikForm;
