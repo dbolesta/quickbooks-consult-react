@@ -13,7 +13,7 @@ const FormContainer = styled.div`
     width: 100%;
   }
 
-  .thanks-for-sending {
+  .post-submit-message {
     text-align: center;
   }
 `;
@@ -61,7 +61,7 @@ const FormGroup = styled.div`
   }
 
   .has-error {
-    border: 2px solid red;
+    border: 1px solid red;
   }
 
   .form-message {
@@ -78,59 +78,70 @@ const ContactForm = ({
   touched,
   isSubmitting,
   status
-}) => (
-  <FormContainer>
-    <Form>
-      <FormGroup>
-        <label htmlFor="name">Your Name</label>
-        <Field
-          type="name"
-          name="name"
-          placeholder="Enter your name"
-          className={touched.name && errors.name ? 'has-error' : null}
-        />
-        <Error touched={touched.name} message={errors.name} />
-      </FormGroup>
-      <FormGroup>
-        <label htmlFor="email">Your Email</label>
-        <Field
-          type="email"
-          name="email"
-          placeholder="Enter your Email"
-          className={
-            touched.email && errors.email ? 'has-error' : null
-          }
-        />
-        <Error touched={touched.email} message={errors.email} />
-      </FormGroup>
-      <FormGroup>
-        <label htmlFor="name">Your Message</label>
-        <Field
-          component="textarea"
-          name="message"
-          rows="10"
-          placeholder="Enter your message"
-          className={
-            touched.message && errors.message ? 'has-error' : null
-          }
-        />
-        <Error touched={touched.message} message={errors.message} />
-      </FormGroup>
+}) => {
+  return (
+    <FormContainer>
+      <Form>
+        <FormGroup>
+          <label htmlFor="name">Your Name</label>
+          <Field
+            type="name"
+            name="name"
+            placeholder="Enter your name"
+            className={
+              touched.name && errors.name ? 'has-error' : null
+            }
+          />
+          <Error touched={touched.name} message={errors.name} />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="email">Your Email</label>
+          <Field
+            type="email"
+            name="email"
+            placeholder="Enter your Email"
+            className={
+              touched.email && errors.email ? 'has-error' : null
+            }
+          />
+          <Error touched={touched.email} message={errors.email} />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="name">Your Message</label>
+          <Field
+            component="textarea"
+            name="message"
+            rows="10"
+            placeholder="Enter your message"
+            className={
+              touched.message && errors.message ? 'has-error' : null
+            }
+          />
+          <Error touched={touched.message} message={errors.message} />
+        </FormGroup>
 
-      {status ? (
-        <p className="thanks-for-sending">
-          Thanks! I'll get back to you as soon as I can!
-        </p>
-      ) : null}
+        {status ? (
+          status.success ? (
+            <p className="post-submit-message">
+              Thanks! I'll get back to you as soon as I can!
+            </p>
+          ) : (
+            <p className="post-submit-message">
+              There seems to be a problem... Please try again, or send
+              an email directly using the address listed below.
+            </p>
+          )
+        ) : null}
 
-      <FormGroup>
-        <button disabled={isSubmitting} type="submit">
-          {isSubmitting ? 'Submitting...' : 'Submit'}
-        </button>
-      </FormGroup>
-    </Form>
-  </FormContainer>
-);
+        <FormGroup>
+          <button disabled={isSubmitting} type="submit">
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </button>
+        </FormGroup>
+      </Form>
+    </FormContainer>
+  );
+};
 
 const FormikForm = withFormik({
   mapPropsToValues({ name, email, message }) {
@@ -154,9 +165,15 @@ const FormikForm = withFormik({
     // console.log('sending message');
     // console.log(values);
     // setSubmitting(false);
+
+    // test formcarry, send to email onem0retest@mailinator
+    // using endpoing: https://formcarry.com/s/lBQFkt4kkeL
+
+    // real endpoint: https://formcarry.com/s/i0I4UWm9CI6
+
     setSubmitting(false);
     axios
-      .post('https://formcarry.com/s/lBQFkt4kkeL', values, {
+      .post('https://formcarry.com/s/i0I4UWm9CI6', values, {
         headers: { Accept: 'application/json' }
       })
       .then(function(response) {
@@ -164,6 +181,7 @@ const FormikForm = withFormik({
         setStatus({ success: true }); // so we can have a success message
       })
       .catch(function(error) {
+        setStatus({ success: false }); // fail message
         console.log(error);
         console.log('this was an error!');
       });

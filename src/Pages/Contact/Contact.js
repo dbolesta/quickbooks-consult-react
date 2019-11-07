@@ -42,7 +42,7 @@ const Contact = props => {
       <Content>
         <h2>Contact Me</h2>
         <p>
-          Reach out by email or phone to discuss your QuickBooks®
+          Reach out using this form to discuss your QuickBooks®
           bookkeeping needs.
         </p>
 
