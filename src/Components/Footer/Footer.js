@@ -151,7 +151,7 @@ class Footer extends Component {
     this.footerCardRef = React.createRef();
 
     this.state = {
-      inView: false
+      inView: false,
     };
   }
 
@@ -170,14 +170,14 @@ class Footer extends Component {
     if (bottomOfWindow - footerCardBottom > -50) {
       if (!this.state.inView) {
         this.setState({
-          inView: true
+          inView: true,
         });
       }
       // if card was in view, and is now out of view, remove state
     } else if (bottomOfWindow < footerCardTop) {
       if (this.state.inView) {
         this.setState({
-          inView: false
+          inView: false,
         });
       }
     }
@@ -208,7 +208,7 @@ class Footer extends Component {
             alt="Puzzle Piece 4"
           />
           <Top>
-            <p>Full Charge Bookkeeper</p>
+            <p>Remote Bookkeeper</p>
             <p>QuickBooks® Consultant</p>
           </Top>
           <Bottom>
